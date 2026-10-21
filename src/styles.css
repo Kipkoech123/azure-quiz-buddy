@@ -164,7 +164,7 @@ body { font-family: var(--font-sans); }
 @utility answer {
   display: flex; align-items: center; gap: .75rem; width: 100%; min-height: 3.75rem;
   padding: .875rem 1.125rem; border-radius: 1rem; border: 2px solid var(--border);
-  background: var(--card); color: var(--foreground); font-weight: 600; transition: all .15s;
+  background: var(--card); color: var(--foreground); font-weight: 600; transition: border-color .15s;
   &[data-state="idle"]:hover { border-color: var(--primary); background: var(--secondary); }
   &[data-state="correct"] { background: var(--success); border-color: var(--success); color: var(--primary-foreground); }
   &[data-state="wrong"] { background: var(--destructive); border-color: var(--destructive); color: var(--primary-foreground); }
