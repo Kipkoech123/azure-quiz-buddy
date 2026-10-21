@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "topic": "Cloud Concepts",
+    "question": "A Nairobi online shop needs extra servers only during Black Friday, and the cloud adds and removes them automatically as shoppers come and go. Which cloud benefit is this?",
+    "options": ["Geo-distribution", "Elasticity", "Data sovereignty", "Fault tolerance"],
+    "answer": 1,
+    "explanation": "Elasticity means resources grow and shrink automatically with demand, so you only pay for what you need at that moment. Geo-distribution is about placing services close to users in many regions, data sovereignty is about where data legally lives, and fault tolerance is about surviving a component failure."
+  },
+  {
+    "id": 2,
+    "topic": "Cloud Concepts",
+    "question": "A Lagos startup stops buying its own servers and instead pays a monthly Azure bill. What change is this?",
+    "options": ["From operational expenditure (OpEx) to capital expenditure (CapEx)", "From variable costs to fixed costs", "From capital expenditure (CapEx) to operational expenditure (OpEx)", "From public cloud to private cloud"],
+    "answer": 2,
+    "explanation": "Buying hardware up front is CapEx; paying monthly for what you use is OpEx. The first option is the reverse, a monthly pay-as-you-go bill is not a fixed cost, and moving to Azure is still public cloud."
+  },
+  {
+    "id": 3,
+    "topic": "Cloud Concepts",
+    "question": "You run a virtual machine in Azure (IaaS). Who is responsible for installing operating system updates on it?",
+    "options": ["Microsoft, because it owns the data centre", "Microsoft and you equally, in every service type", "Nobody, updates cannot be managed in the cloud", "You, the customer"],
+    "answer": 3,
+    "explanation": "Under the shared responsibility model, in IaaS Microsoft looks after the physical hardware, network and data centre, while you manage the operating system, apps and data. Responsibility is not split equally in every service type, and updates can certainly be managed."
+  },
+  {
+    "id": 4,
+    "topic": "Cloud Concepts",
+    "question": "Which of these is an example of Software as a Service (SaaS)?",
+    "options": ["Azure Virtual Machines", "Microsoft 365 email", "Azure Functions", "Azure Storage"],
+    "answer": 1,
+    "explanation": "SaaS is ready-to-use software you simply log in to, like Microsoft 365 email. Virtual Machines are IaaS, Azure Functions is a serverless compute service, and Azure Storage is a building block you use inside your own solutions."
+  },
+  {
+    "id": 5,
+    "topic": "Cloud Concepts",
+    "question": "A developer in Accra wants to publish a website without managing servers or installing operating system patches. Which cloud service type fits best?",
+    "options": ["Infrastructure as a Service (IaaS)", "On-premises hosting", "Platform as a Service (PaaS)", "A private data centre"],
+    "answer": 2,
+    "explanation": "PaaS gives you a ready platform (for example Azure App Service) where the provider handles the operating system and runtime, and you just deploy your code. With IaaS you would manage the OS yourself, and on-premises or a private data centre are not cloud service types that remove that work."
+  },
+  {
+    "id": 6,
+    "topic": "Cloud Concepts",
+    "question": "A bank in Kampala keeps customer records in its own data centre but runs its mobile app on Azure. Which cloud model is this?",
+    "options": ["Public cloud only", "Hybrid cloud", "Private cloud only", "Serverless"],
+    "answer": 1,
+    "explanation": "Hybrid cloud combines your own (private) infrastructure with a public cloud such as Azure. Using only one of them would be public-only or private-only, and serverless describes how code runs, not where it is hosted."
+  },
+  {
+    "id": 7,
+    "topic": "Cloud Concepts",
+    "question": "What does the consumption-based pricing model mean?",
+    "options": ["You pay a fixed yearly fee whether you use the service or not", "You must buy hardware before you can start", "You pay only for the resources you actually use", "You pay for everything in one lump sum at the end of the contract"],
+    "answer": 2,
+    "explanation": "Consumption-based pricing means you are charged for what you use, like paying for electricity by the unit. A fixed fee, up-front hardware purchase or one lump sum all describe traditional, non-consumption models."
+  },
+  {
+    "id": 8,
+    "topic": "Cloud Concepts",
+    "question": "An Azure service has a 99.9% SLA. What does that promise?",
+    "options": ["The service will never go down", "Your data is 99.9% encrypted", "Microsoft guarantees the service is available at least 99.9% of the time", "The service costs 99.9% less than competitors"],
+    "answer": 2,
+    "explanation": "A Service Level Agreement is an uptime commitment. 99.9% still allows about 8.7 hours of downtime a year, so 'never goes down' is not promised. An SLA says nothing about encryption percentages or comparative pricing."
+  },
+  {
+    "id": 9,
+    "topic": "Cloud Concepts",
+    "question": "A school system must send an SMS only when a student is marked absent. The code should run only when that event happens, with no server to manage. Which Azure service fits?",
+    "options": ["Azure ExpressRoute", "Azure Policy", "Azure Virtual Machines", "Azure Functions"],
+    "answer": 3,
+    "explanation": "Azure Functions is serverless: your code runs in response to events and you pay only while it runs. A Virtual Machine would keep running (and billing) all the time, ExpressRoute is a private network link, and Azure Policy enforces rules rather than running code."
+  },
+  {
+    "id": 10,
+    "topic": "Cloud Concepts",
+    "question": "A ticketing website adds five more identical servers to handle a rush instead of upgrading one server to a bigger one. What is this called?",
+    "options": ["Vertical scaling (scale up)", "Horizontal scaling (scale out)", "Disaster recovery", "Resource locking"],
+    "answer": 1,
+    "explanation": "Adding more instances is horizontal scaling (scale out). Making one machine bigger is vertical scaling (scale up). Disaster recovery is about restoring service after a failure, and resource locking protects resources from changes."
+  },
+  {
+    "id": 11,
+    "topic": "Azure Architecture and Services",
+    "question": "What is an Azure Availability Zone?",
+    "options": ["A pricing tier for virtual machines", "A group of regions inside one country", "One or more physically separate datacenters within an Azure region", "A tool that backs up your files"],
+    "answer": 2,
+    "explanation": "Availability Zones are separate datacenters, each with its own power, cooling and networking, inside the same region, so one building failing does not take your app down. They are not a pricing tier, a group of regions, or a backup tool."
+  },
+  {
+    "id": 12,
+    "topic": "Azure Architecture and Services",
+    "question": "What is an Azure resource group?",
+    "options": ["A physical building that holds Azure servers", "A logical container that holds related Azure resources", "A type of virtual machine", "A monthly invoice"],
+    "answer": 1,
+    "explanation": "A resource group is a logical container for resources that share a lifecycle, such as an app and its database, so you can manage them together. It is not a physical building, a machine type, or a bill."
+  },
+  {
+    "id": 13,
+    "topic": "Azure Architecture and Services",
+    "question": "A photo app needs to store millions of images and videos cheaply. Which Azure service is built for this kind of unstructured data?",
+    "options": ["Azure SQL Database", "Azure Virtual Network", "Microsoft Entra ID", "Azure Blob Storage"],
+    "answer": 3,
+    "explanation": "Blob Storage stores large amounts of unstructured data such as images, videos and documents. SQL Database holds structured, relational data, Virtual Network handles connectivity, and Entra ID handles identities."
+  },
+  {
+    "id": 14,
+    "topic": "Azure Architecture and Services",
+    "question": "Which Azure service gives you full control of the operating system running in the cloud?",
+    "options": ["Azure App Service", "Azure Virtual Machines", "Azure Functions", "Azure Policy"],
+    "answer": 1,
+    "explanation": "Virtual Machines are IaaS, so you choose and manage the operating system. App Service and Functions hide the OS from you, and Azure Policy is a governance tool, not a compute service."
+  },
+  {
+    "id": 15,
+    "topic": "Azure Architecture and Services",
+    "question": "What does an Azure Virtual Network let you do?",
+    "options": ["Let Azure resources communicate securely with each other, the internet and on-premises networks", "Store backups of your databases", "Track how much money you have spent", "Create and manage user accounts"],
+    "answer": 0,
+    "explanation": "A Virtual Network is your private network in Azure and controls how resources talk to each other and to the outside world. Backups, cost tracking and user accounts are handled by other services."
+  },
+  {
+    "id": 16,
+    "topic": "Azure Architecture and Services",
+    "question": "Staff at a Nairobi company sign in once to reach many apps (single sign-on). Which Azure identity service provides this?",
+    "options": ["Azure Cosmos DB", "Azure Advisor", "Microsoft Entra ID", "Azure Blob Storage"],
+    "answer": 2,
+    "explanation": "Microsoft Entra ID (formerly Azure Active Directory) is the cloud identity and access service that supports single sign-on and multi-factor authentication. Cosmos DB is a database, Advisor gives recommendations, and Blob Storage stores files."
+  },
+  {
+    "id": 17,
+    "topic": "Azure Architecture and Services",
+    "question": "Which Azure service is a globally distributed NoSQL database?",
+    "options": ["Azure Files", "Azure Monitor", "Azure SQL Database", "Azure Cosmos DB"],
+    "answer": 3,
+    "explanation": "Azure Cosmos DB is a globally distributed NoSQL database. Azure SQL Database is a managed relational database, Azure Files is a file share, and Azure Monitor collects performance data."
+  },
+  {
+    "id": 18,
+    "topic": "Azure Architecture and Services",
+    "question": "A hospital wants a private connection from its own network to Azure that does not travel over the public internet. Which service should it use?",
+    "options": ["Azure VPN Gateway", "Azure ExpressRoute", "Azure Monitor", "Azure Policy"],
+    "answer": 1,
+    "explanation": "ExpressRoute provides a private, dedicated connection through a connectivity provider. VPN Gateway sends encrypted traffic across the public internet, so it does not meet the requirement. Monitor and Policy are not networking services."
+  },
+  {
+    "id": 19,
+    "topic": "Azure Architecture and Services",
+    "question": "In the Azure management hierarchy, which is the highest level?",
+    "options": ["Resource group", "Subscription", "Resource", "Management group"],
+    "answer": 3,
+    "explanation": "The order from top to bottom is management groups, subscriptions, resource groups, then resources. Management groups let you apply governance across many subscriptions at once."
+  },
+  {
+    "id": 20,
+    "topic": "Azure Architecture and Services",
+    "question": "What is an Azure region pair?",
+    "options": ["Two regions in the same geography linked to support disaster recovery", "Two virtual machines sharing one disk", "Two subscriptions billed together", "Two availability zones inside one datacenter"],
+    "answer": 0,
+    "explanation": "A region pair links two regions in the same geography so that if one has a major outage, the other can help with recovery. The other options describe things that are not region pairs."
+  },
+  {
+    "id": 21,
+    "topic": "Azure Management and Governance",
+    "question": "Before deploying, you want to estimate the monthly cost of a planned Azure setup. Which tool should you use?",
+    "options": ["Azure Advisor", "Pricing calculator", "Azure Service Health", "Resource locks"],
+    "answer": 1,
+    "explanation": "The Pricing calculator estimates the cost of Azure services you plan to use. Advisor reviews resources you already have, Service Health reports Azure outages, and resource locks protect resources from changes."
+  },
+  {
+    "id": 22,
+    "topic": "Azure Management and Governance",
+    "question": "A company wants to compare the cost of running its servers on-premises with running them on Azure. Which tool helps?",
+    "options": ["Total Cost of Ownership (TCO) calculator", "Azure Policy", "Azure Monitor", "Microsoft Defender for Cloud"],
+    "answer": 0,
+    "explanation": "The TCO calculator compares on-premises costs with the cost of moving to Azure. Policy enforces rules, Monitor tracks performance, and Defender for Cloud focuses on security."
+  },
+  {
+    "id": 23,
+    "topic": "Azure Management and Governance",
+    "question": "Your company requires that resources can only be created in approved regions. Which service enforces this rule?",
+    "options": ["Role-based access control (RBAC)", "Azure Advisor", "Resource locks", "Azure Policy"],
+    "answer": 3,
+    "explanation": "Azure Policy enforces rules on resources, such as allowed regions or required tags. RBAC controls who can do what, locks stop deletion or changes, and Advisor only gives recommendations."
+  },
+  {
+    "id": 24,
+    "topic": "Azure Management and Governance",
+    "question": "How can you stop someone from accidentally deleting a critical production database?",
+    "options": ["Add a tag to the database", "Apply a CanNotDelete resource lock", "Use the Pricing calculator", "Move it to another region"],
+    "answer": 1,
+    "explanation": "A CanNotDelete lock lets people read and modify the resource but blocks deletion until the lock is removed. Tags only organise resources, the Pricing calculator estimates cost, and moving regions does not protect against deletion."
+  },
+  {
+    "id": 25,
+    "topic": "Azure Management and Governance",
+    "question": "An intern needs to view the resources in one resource group but must not change anything. Which approach follows the principle of least privilege?",
+    "options": ["Assign the Owner role on the whole subscription", "Assign the Contributor role on the resource group", "Assign the Reader role on the resource group", "Share the administrator password"],
+    "answer": 2,
+    "explanation": "Reader on the resource group gives view-only access to exactly what is needed. Owner and Contributor allow changes, and sharing an admin password is unsafe and cannot be tracked to a person."
+  },
+  {
+    "id": 26,
+    "topic": "Azure Management and Governance",
+    "question": "Which service gives a security score and recommendations to harden your Azure and hybrid workloads?",
+    "options": ["Microsoft Defender for Cloud", "Azure Pricing calculator", "Azure Blob Storage", "Azure Service Health"],
+    "answer": 0,
+    "explanation": "Microsoft Defender for Cloud assesses your security posture, gives recommendations and helps protect workloads from threats. The other options handle cost estimates, storage and outage notices."
+  },
+  {
+    "id": 27,
+    "topic": "Azure Management and Governance",
+    "question": "Which service collects metrics and logs so you can see how your apps and resources are performing?",
+    "options": ["Azure Policy", "Azure Cosmos DB", "Azure Monitor", "Microsoft Entra ID"],
+    "answer": 2,
+    "explanation": "Azure Monitor collects, analyses and acts on telemetry from your cloud and on-premises environments. Policy enforces rules, Cosmos DB stores data, and Entra ID manages identities."
+  },
+  {
+    "id": 28,
+    "topic": "Azure Management and Governance",
+    "question": "Which service reviews your existing resources and gives personalised recommendations to improve cost, security, reliability and performance?",
+    "options": ["Azure Advisor", "Azure Functions", "Azure Virtual Network", "Azure Files"],
+    "answer": 0,
+    "explanation": "Azure Advisor analyses your resources and suggests improvements across cost, security, reliability, operational excellence and performance. The other options are compute, networking and storage services."
+  },
+  {
+    "id": 29,
+    "topic": "Azure Management and Governance",
+    "question": "Azure has a problem in a region you use. Where do you find personalised notifications about issues that affect your own resources?",
+    "options": ["Azure Pricing calculator", "Azure Policy", "Azure Blob Storage", "Azure Service Health"],
+    "answer": 3,
+    "explanation": "Azure Service Health gives personalised alerts about outages and planned maintenance that affect the services you use. The calculator estimates cost, Policy enforces rules, and Blob Storage stores data."
+  },
+  {
+    "id": 30,
+    "topic": "Azure Management and Governance",
+    "question": "A team wants to deploy the same set of Azure resources again and again, consistently, from a template file. Which approach should it use?",
+    "options": ["Click through the portal each time from memory", "Infrastructure as code with ARM templates or Bicep", "Email setup steps to each team member", "Use Azure Advisor to build the resources"],
+    "answer": 1,
+    "explanation": "Infrastructure as code, using ARM templates or Bicep, describes resources in a file so deployments are repeatable and consistent. Manual clicking and emailed steps invite mistakes, and Advisor recommends improvements but does not deploy resources."
+  }
+]
