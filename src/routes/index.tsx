@@ -67,7 +67,7 @@ function Home({ onStart }: { onStart: (t: string | null) => void }) {
       </div>
       <div className="space-y-3">
         {TOPICS.map((t, idx) => {
-          const Icon = ICONS[idx];
+          const Icon = ICONS[idx] ?? Cloud;
           return (
             <button key={t} onClick={() => onStart(t)} className="tap-card group">
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
