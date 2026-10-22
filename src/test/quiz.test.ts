@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildQuiz, QUESTIONS, TOPICS, readiness, scoreByTopic, scoreTone, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
+import { buildQuiz, QUESTIONS, TOPICS, nextStep, readiness, scoreByTopic, scoreTone, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
 
 afterEach(() => vi.restoreAllMocks());
 
