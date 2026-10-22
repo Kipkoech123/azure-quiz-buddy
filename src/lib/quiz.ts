@@ -80,3 +80,11 @@ export function scoreTone(pct: number): string {
   const level = readiness(pct);
   return level === "Ready" ? "bg-success" : level === "Almost there" ? "bg-warning" : "bg-destructive";
 }
+
+/** Friendly next-step message shown under the readiness level. */
+export function nextStep(pct: number, weak: string | null): string {
+  const level = readiness(pct);
+  if (level === "Ready") return "You're ready — keep it sharp with an All topics quiz.";
+  if (level === "Almost there") return weak ? `Revise ${weak}, then try again.` : "Review your lowest topic, then try again.";
+  return weak ? `Start with ${weak}, read each explanation, then try again.` : "Read each explanation, then try again.";
+}
