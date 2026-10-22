@@ -19,6 +19,12 @@ export const Route = createFileRoute("/")({
 
 const ICONS = [Cloud, Layers, ShieldCheck];
 
+const HOW_TO = [
+  "Pick a topic, or choose All topics for a mixed quiz.",
+  "Tap an answer, then read the explanation that appears.",
+  "Check your results and retry your weakest topic.",
+];
+
 type State =
   | { screen: "home" }
   | { screen: "quiz"; qs: Question[]; i: number; picks: number[] }
@@ -29,25 +35,30 @@ function App() {
   const start = (topic: string | null) => setS({ screen: "quiz", qs: buildQuiz(topic), i: 0, picks: [] });
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto max-w-xl px-5 py-8">
-        {s.screen === "home" && <Home onStart={start} />}
-        {s.screen === "quiz" && (
-          <Quiz
-            key={s.i}
-            q={s.qs[s.i]!}
-            n={s.i + 1}
-            total={s.qs.length}
-            onPick={(p) => setS({ ...s, picks: [...s.picks, p] })}
-            onNext={() =>
-              s.i + 1 < s.qs.length
-                ? setS({ ...s, i: s.i + 1 })
-                : setS({ screen: "results", qs: s.qs, picks: s.picks })
-            }
-          />
-        )}
-        {s.screen === "results" && (
-          <Results qs={s.qs} picks={s.picks} onRetry={start} onHome={() => setS({ screen: "home" })} />
-        )}
+      <div className="mx-auto flex min-h-screen max-w-xl flex-col px-5 py-8">
+        <div className="flex-1">
+          {s.screen === "home" && <Home onStart={start} />}
+          {s.screen === "quiz" && (
+            <Quiz
+              key={s.i}
+              q={s.qs[s.i]!}
+              n={s.i + 1}
+              total={s.qs.length}
+              onPick={(p) => setS({ ...s, picks: [...s.picks, p] })}
+              onNext={() =>
+                s.i + 1 < s.qs.length
+                  ? setS({ ...s, i: s.i + 1 })
+                  : setS({ screen: "results", qs: s.qs, picks: s.picks })
+              }
+            />
+          )}
+          {s.screen === "results" && (
+            <Results qs={s.qs} picks={s.picks} onRetry={start} onHome={() => setS({ screen: "home" })} />
+          )}
+        </div>
+        <footer className="mt-10 border-t pt-5 text-center text-xs leading-relaxed text-muted-foreground">
+          Unofficial study tool. Questions are original and based on the public AZ-900 skills outline.
+        </footer>
       </div>
     </main>
   );
@@ -85,6 +96,19 @@ function Home({ onStart }: { onStart: (t: string | null) => void }) {
       <button onClick={() => onStart(null)} className="btn-primary w-full">
         <Sparkles className="size-5" /> All topics
       </button>
+      <div className="rounded-2xl border bg-card p-5">
+        <h2 className="font-display text-lg font-bold text-foreground">How to use</h2>
+        <ol className="mt-3 space-y-3">
+          {HOW_TO.map((step, i) => (
+            <li key={step} className="flex items-start gap-3">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-secondary text-sm font-bold text-secondary-foreground">
+                {i + 1}
+              </span>
+              <span className="text-sm leading-relaxed text-muted-foreground">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
