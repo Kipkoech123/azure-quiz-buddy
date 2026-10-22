@@ -1,5 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { buildQuiz, QUESTIONS, readiness, scoreByTopic, weakestTopic, type Question } from "@/lib/quiz";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { buildQuiz, QUESTIONS, TOPICS, readiness, scoreByTopic, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
+
+afterEach(() => vi.restoreAllMocks());
 
 describe("readiness", () => {
   it("80% or more is Ready", () => expect(readiness(80)).toBe("Ready"));
@@ -23,7 +25,8 @@ describe("buildQuiz shuffling", () => {
   it("keeps the marked answer on the correct option text after shuffling", () => {
     for (const topic of [null, ...(["Cloud Concepts", "Azure Architecture and Services", "Azure Management and Governance"] as const)]) {
       for (const q of buildQuiz(topic)) {
-        const source = QUESTIONS.find((s) => s.id === q.id)!;
+        const source = QUESTIONS.find((s) => s.id === q.id);
+        if (!source) throw new Error(`Unknown question ${q.id}`);
         expect(q.options[q.answer]).toBe(source.options[source.answer]);
       }
     }
@@ -31,8 +34,53 @@ describe("buildQuiz shuffling", () => {
 
   it("keeps the same set of options as the source question", () => {
     for (const q of buildQuiz(null)) {
-      const source = QUESTIONS.find((s) => s.id === q.id)!;
+      const source = QUESTIONS.find((s) => s.id === q.id);
+      if (!source) throw new Error(`Unknown question ${q.id}`);
       expect([...q.options].sort()).toEqual([...source.options].sort());
     }
+  });
+
+  it("tracks the original correct option when option text is repeated", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.999);
+    const q: Question = {
+      id: 100, topic: TOPICS[0], question: "Repeated option labels",
+      options: ["Same label", "Same label", "Third", "Fourth"],
+      answer: 1, explanation: "The second option is marked correct.",
+    };
+    expect(shuffleOptions(q).answer).toBe(1);
+  });
+
+  it("reshuffles both questions and options on every start without mutating the source or previous quiz", () => {
+    const original = structuredClone(QUESTIONS);
+    const random = vi.spyOn(Math, "random").mockReturnValue(0.999);
+    for (const topic of [null, ...TOPICS]) {
+      random.mockReturnValue(0.999);
+      const first = buildQuiz(topic);
+      const firstSnapshot = structuredClone(first);
+      random.mockReturnValue(0.5);
+      const second = buildQuiz(topic);
+      expect(second.map((q) => q.id)).not.toEqual(first.map((q) => q.id));
+      for (const q of second) {
+        const source = original.find((s) => s.id === q.id);
+        if (!source) throw new Error(`Unknown question ${q.id}`);
+        expect(q.options).not.toEqual(source.options);
+        expect(q.options[q.answer]).toBe(source.options[source.answer]);
+        expect(q.answer).toBeGreaterThanOrEqual(0);
+        expect(q.answer).toBeLessThan(q.options.length);
+      }
+      expect(first).toEqual(firstSnapshot);
+      expect(QUESTIONS).toEqual(original);
+    }
+  });
+
+  it("scores shuffled answers correctly across every topic", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0);
+    const qs = buildQuiz(null);
+    expect(scoreByTopic(qs, qs.map((q) => q.answer))).toEqual(
+      TOPICS.map((topic) => ({ topic, correct: 4, total: 4, pct: 100 })),
+    );
+    expect(scoreByTopic(qs, qs.map((q) => (q.answer + 1) % q.options.length))).toEqual(
+      TOPICS.map((topic) => ({ topic, correct: 0, total: 4, pct: 0 })),
+    );
   });
 });
