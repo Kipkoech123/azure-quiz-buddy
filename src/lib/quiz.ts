@@ -74,3 +74,9 @@ export function weakestTopic(scores: TopicScore[]): string | null {
   if (!scores.length) return null;
   return scores.reduce((a, b) => (b.pct < a.pct ? b : a)).topic;
 }
+
+/** Bar colour for a topic score: green 80+, orange 60-79, red below 60. */
+export function scoreTone(pct: number): string {
+  const level = readiness(pct);
+  return level === "Ready" ? "bg-success" : level === "Almost there" ? "bg-warning" : "bg-destructive";
+}
