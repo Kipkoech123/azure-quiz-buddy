@@ -57,7 +57,7 @@ describe("buildQuiz shuffling", () => {
       random.mockReturnValue(0.999);
       const first = buildQuiz(topic);
       const firstSnapshot = structuredClone(first);
-      random.mockReturnValue(0);
+      random.mockReturnValue(0.5);
       const second = buildQuiz(topic);
       expect(second.map((q) => q.id)).not.toEqual(first.map((q) => q.id));
       for (const q of second) {

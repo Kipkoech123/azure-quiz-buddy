@@ -28,16 +28,22 @@ function shuffle<T>(a: T[]): T[] {
   const r = [...a];
   for (let i = r.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [r[i], r[j]] = [r[i]!, r[j]!];
+    const current = r[i];
+    const target = r[j];
+    if (current === undefined || target === undefined) continue;
+    [r[i], r[j]] = [target, current];
   }
   return r;
 }
 
 /** Shuffle a question's options and remap the answer index so it stays correct. */
 export function shuffleOptions(q: Question): Question {
-  const correct = q.options[q.answer]!;
-  const options = shuffle(q.options);
-  return { ...q, options, answer: options.indexOf(correct) };
+  const indexedOptions = shuffle(q.options.map((text, index) => ({ text, index })));
+  return {
+    ...q,
+    options: indexedOptions.map((option) => option.text),
+    answer: indexedOptions.findIndex((option) => option.index === q.answer),
+  };
 }
 
 /** Topic quiz: up to 10 questions from that topic. All topics: 4 from each, mixed. Questions and options are shuffled every time. */

@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Shuffle answer options with their original indices and derive the correct-answer index from that identity, not label text, so repeated labels cannot corrupt scoring.
