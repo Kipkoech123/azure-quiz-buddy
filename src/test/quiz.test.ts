@@ -16,6 +16,7 @@ describe("weakest topic", () => {
     const qs = [q("Cloud Concepts"), q("Cloud Concepts"), q("Azure Management and Governance")];
     const s = scoreByTopic(qs, [0, 0, 1]);
     expect(weakestTopic(s)).toBe("Azure Management and Governance");
+  });
 });
 
 describe("buildQuiz shuffling", () => {
