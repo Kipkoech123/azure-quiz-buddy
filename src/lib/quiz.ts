@@ -28,14 +28,14 @@ function shuffle<T>(a: T[]): T[] {
   const r = [...a];
   for (let i = r.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [r[i], r[j]] = [r[j], r[i]];
+    [r[i], r[j]] = [r[i]!, r[j]!];
   }
   return r;
 }
 
 /** Shuffle a question's options and remap the answer index so it stays correct. */
 export function shuffleOptions(q: Question): Question {
-  const correct = q.options[q.answer];
+  const correct = q.options[q.answer]!;
   const options = shuffle(q.options);
   return { ...q, options, answer: options.indexOf(correct) };
 }

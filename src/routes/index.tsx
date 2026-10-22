@@ -34,7 +34,7 @@ function App() {
         {s.screen === "quiz" && (
           <Quiz
             key={s.i}
-            q={s.qs[s.i]}
+            q={s.qs[s.i]!}
             n={s.i + 1}
             total={s.qs.length}
             onPick={(p) => setS({ ...s, picks: [...s.picks, p] })}
