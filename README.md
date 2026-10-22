@@ -91,7 +91,7 @@ Rules: no Microsoft logos. Clean, friendly design, blue and white colours, large
 
 - Short, one-change-at-a-time prompts are easier to test and fix.
 - Giving the AI tool structured data (JSON) saved time and avoided typing mistakes.
-
+- Lovable also found and fixed a repeated-answer-text bug after I asked it to check the shuffle.
 ## Screenshots
 **Home screen**
 <img width="573" height="1280" alt="Image 2026-10-21 at 16 06 56" src="https://github.com/user-attachments/assets/cd8ea1ca-59c8-44cd-b046-d348c79e4d1a" />
@@ -99,6 +99,9 @@ Rules: no Microsoft logos. Clean, friendly design, blue and white colours, large
 <img width="573" height="1280" alt="Image 2026-10-21 at 16 06 57" src="https://github.com/user-attachments/assets/831bd588-c3c9-4af3-a7b9-84067d8958d5" />
 **results**
 <img width="720" height="1600" alt="Image 2026-10-21 at 16 06 54" src="https://github.com/user-attachments/assets/e191bf9c-6910-463e-916f-eecd5af82272" />
+*results screen with the coloured bars*
+<img width="716" height="1600" alt="WhatsApp Image 2026-10-22 at 16 42 34" src="https://github.com/user-attachments/assets/b36483a1-359d-47a4-a049-e2b7338fd431" />
+
 
 
 
