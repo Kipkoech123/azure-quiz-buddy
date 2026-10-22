@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readiness, scoreByTopic, weakestTopic, type Question } from "@/lib/quiz";
+import { buildQuiz, QUESTIONS, readiness, scoreByTopic, weakestTopic, type Question } from "@/lib/quiz";
 
 describe("readiness", () => {
   it("80% or more is Ready", () => expect(readiness(80)).toBe("Ready"));
@@ -16,5 +16,23 @@ describe("weakest topic", () => {
     const qs = [q("Cloud Concepts"), q("Cloud Concepts"), q("Azure Management and Governance")];
     const s = scoreByTopic(qs, [0, 0, 1]);
     expect(weakestTopic(s)).toBe("Azure Management and Governance");
+  });
+});
+
+describe("buildQuiz shuffling", () => {
+  it("keeps the marked answer on the correct option text after shuffling", () => {
+    for (const topic of [null, ...(["Cloud Concepts", "Azure Architecture and Services", "Azure Management and Governance"] as const)]) {
+      for (const q of buildQuiz(topic)) {
+        const source = QUESTIONS.find((s) => s.id === q.id)!;
+        expect(q.options[q.answer]).toBe(source.options[source.answer]);
+      }
+    }
+  });
+
+  it("keeps the same set of options as the source question", () => {
+    for (const q of buildQuiz(null)) {
+      const source = QUESTIONS.find((s) => s.id === q.id)!;
+      expect([...q.options].sort()).toEqual([...source.options].sort());
+    }
   });
 });
