@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Cloud, Layers, ShieldCheck, Sparkles, Check, X, ArrowRight, RotateCcw, Target } from "lucide-react";
-import { buildQuiz, readiness, scoreByTopic, scoreTone, weakestTopic, TOPICS, type Question } from "@/lib/quiz";
+import { buildQuiz, nextStep, readiness, scoreByTopic, scoreTone, weakestTopic, TOPICS, type Question } from "@/lib/quiz";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -186,6 +186,9 @@ function Results({ qs, picks, onRetry, onHome }: { qs: Question[]; picks: number
           <div className="absolute -top-1 size-5 -translate-x-1/2 rounded-full border-4 border-card bg-foreground" style={{ left: `${pct}%` }} />
         </div>
         <div className="mt-2 flex justify-between text-xs text-muted-foreground"><span>0</span><span>60</span><span>80</span><span>100</span></div>
+        <p className="mt-4 rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-secondary-foreground">
+          {nextStep(pct, weak)}
+        </p>
       </div>
       <div className="space-y-3">
         {topics.map((t) => (

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildQuiz, QUESTIONS, TOPICS, readiness, scoreByTopic, scoreTone, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
+import { buildQuiz, QUESTIONS, TOPICS, nextStep, readiness, scoreByTopic, scoreTone, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
 
 afterEach(() => vi.restoreAllMocks());
 
@@ -24,6 +24,25 @@ describe("scoreTone", () => {
   it("is red below 60%", () => {
     expect(scoreTone(59)).toBe("bg-destructive");
     expect(scoreTone(0)).toBe("bg-destructive");
+  });
+});
+
+describe("nextStep", () => {
+  it("tells an Almost-there learner to revise their weakest topic", () => {
+    expect(nextStep(70, "Azure Management and Governance")).toBe("Revise Azure Management and Governance, then try again.");
+  });
+  it("tells a Keep-practising learner where to start", () => {
+    expect(nextStep(40, "Cloud Concepts")).toContain("Start with Cloud Concepts");
+  });
+  it("keeps a Ready learner practising without naming a weakest topic", () => {
+    const msg = nextStep(80, "Cloud Concepts");
+    expect(msg).toContain("ready");
+    expect(msg).not.toContain("Cloud Concepts");
+  });
+  it("never mentions a missing topic", () => {
+    for (const pct of [0, 40, 60, 70, 80, 100]) {
+      expect(nextStep(pct, null)).not.toMatch(/null|undefined/);
+    }
   });
 });
 
