@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Cloud, Layers, ShieldCheck, Sparkles, Check, X, ArrowRight, RotateCcw, Target } from "lucide-react";
-import { buildQuiz, readiness, scoreByTopic, weakestTopic, TOPICS, type Question } from "@/lib/quiz";
+import { buildQuiz, readiness, scoreByTopic, scoreTone, weakestTopic, TOPICS, type Question } from "@/lib/quiz";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -145,7 +145,7 @@ function Results({ qs, picks, onRetry, onHome }: { qs: Question[]; picks: number
   const level = readiness(pct);
   const topics = scoreByTopic(qs, picks);
   const weak = weakestTopic(topics)!;
-  const tone = level === "Ready" ? "bg-success" : level === "Almost there" ? "bg-warning" : "bg-destructive";
+  const tone = scoreTone(pct);
   return (
     <div className="space-y-6">
       <div className="rounded-3xl bg-primary p-6 text-center text-primary-foreground shadow-elegant">
@@ -170,8 +170,8 @@ function Results({ qs, picks, onRetry, onHome }: { qs: Question[]; picks: number
               <span className="font-medium text-foreground">{t.topic}</span>
               <span className="text-muted-foreground">{t.correct}/{t.total} · {t.pct}%</span>
             </div>
-            <div className="mt-2 h-2 overflow-hidden rounded-full bg-secondary">
-              <div className="h-full rounded-full bg-primary" style={{ width: `${t.pct}%` }} />
+            <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-secondary">
+              <div className={`h-full rounded-full transition-all duration-500 ${scoreTone(t.pct)}`} style={{ width: `${t.pct}%` }} />
             </div>
           </div>
         ))}

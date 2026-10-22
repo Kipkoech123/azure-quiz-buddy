@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildQuiz, QUESTIONS, TOPICS, readiness, scoreByTopic, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
+import { buildQuiz, QUESTIONS, TOPICS, readiness, scoreByTopic, scoreTone, shuffleOptions, weakestTopic, type Question } from "@/lib/quiz";
 
 afterEach(() => vi.restoreAllMocks());
 
@@ -10,6 +10,21 @@ describe("readiness", () => {
     expect(readiness(79)).toBe("Almost there");
   });
   it("below 60% is Keep practising", () => expect(readiness(59)).toBe("Keep practising"));
+});
+
+describe("scoreTone", () => {
+  it("is green at 80% or more", () => {
+    expect(scoreTone(80)).toBe("bg-success");
+    expect(scoreTone(100)).toBe("bg-success");
+  });
+  it("is orange from 60% to 79%", () => {
+    expect(scoreTone(60)).toBe("bg-warning");
+    expect(scoreTone(79)).toBe("bg-warning");
+  });
+  it("is red below 60%", () => {
+    expect(scoreTone(59)).toBe("bg-destructive");
+    expect(scoreTone(0)).toBe("bg-destructive");
+  });
 });
 
 describe("weakest topic", () => {
