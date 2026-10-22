@@ -33,10 +33,19 @@ function shuffle<T>(a: T[]): T[] {
   return r;
 }
 
-/** Topic quiz: up to 10 questions from that topic. All topics: 4 from each, mixed. */
+/** Shuffle a question's options and remap the answer index so it stays correct. */
+export function shuffleOptions(q: Question): Question {
+  const correct = q.options[q.answer];
+  const options = shuffle(q.options);
+  return { ...q, options, answer: options.indexOf(correct) };
+}
+
+/** Topic quiz: up to 10 questions from that topic. All topics: 4 from each, mixed. Questions and options are shuffled every time. */
 export function buildQuiz(topic: string | null): Question[] {
-  if (topic) return shuffle(QUESTIONS.filter((q) => q.topic === topic)).slice(0, 10);
-  return shuffle(TOPICS.flatMap((t) => shuffle(QUESTIONS.filter((q) => q.topic === t)).slice(0, 4)));
+  const picked = topic
+    ? shuffle(QUESTIONS.filter((q) => q.topic === topic)).slice(0, 10)
+    : shuffle(TOPICS.flatMap((t) => shuffle(QUESTIONS.filter((q) => q.topic === t)).slice(0, 4)));
+  return picked.map(shuffleOptions);
 }
 
 export type TopicScore = { topic: string; correct: number; total: number; pct: number };

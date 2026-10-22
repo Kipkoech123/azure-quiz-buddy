@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readiness, scoreByTopic, weakestTopic, type Question } from "@/lib/quiz";
+import { buildQuiz, QUESTIONS, readiness, scoreByTopic, weakestTopic, type Question } from "@/lib/quiz";
 
 describe("readiness", () => {
   it("80% or more is Ready", () => expect(readiness(80)).toBe("Ready"));
