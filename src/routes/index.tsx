@@ -19,6 +19,12 @@ export const Route = createFileRoute("/")({
 
 const ICONS = [Cloud, Layers, ShieldCheck];
 
+const HOW_TO = [
+  "Pick a topic, or choose All topics for a mixed quiz.",
+  "Tap an answer, then read the explanation that appears.",
+  "Check your results and retry your weakest topic.",
+];
+
 type State =
   | { screen: "home" }
   | { screen: "quiz"; qs: Question[]; i: number; picks: number[] }
