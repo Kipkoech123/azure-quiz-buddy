@@ -3,7 +3,7 @@
 
 > **Unofficial study tool.** Not affiliated with or endorsed by Microsoft. All questions are original and based on the public AZ-900 skills outline on Microsoft Learn.
 
-Built by BRONSON KIPKOECH KIBICHII, Tiffany Wanjiru and Alex Nyakundi Morwabe for the #1MillionDevs hackathon.
+Built by Bronson Kipkoech Kibichii, Tiffany Wanjiru and Alex Nyakundi Morwabe for the #1MillionDevs hackathon.
 
 ## Live demo
 
